@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+admin = User.find_or_create_by!(email: 'admin@example.com') do |u|
+  u.password = 'supersecurepassword'
+  u.password_confirmation = 'supersecurepassword'
+end
+
+# Assign the admin role
+admin.add_role :admin
