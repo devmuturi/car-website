@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  make: one
+  model: one
+  year: 1
+  price: 1
+  mileage: 1
+  condition: MyString
+  body_style: MyString
+  fuel_type: MyString
+  transmission: MyString
+  color: MyString
+  description: MyText
+  specs: 
+  user: one
+  status: MyString
+  published_at: 2025-11-20 21:34:46
+
+two:
+  make: two
+  model: two
+  year: 1
+  price: 1
+  mileage: 1
+  condition: MyString
+  body_style: MyString
+  fuel_type: MyString
+  transmission: MyString
+  color: MyString
+  description: MyText
+  specs: 
+  user: two
+  status: MyString
+  published_at: 2025-11-20 21:34:46
