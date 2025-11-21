@@ -68,3 +68,10 @@ gem "devise", "~> 4.9"
 
 gem "rolify", "~> 6.0"
 gem "pundit", "~> 2.5"
+
+
+
+gem "view_component", "~> 4.1"
+gem "view_component-contrib", "~> 0.2.5"
+
+gem "dry-initializer", "~> 3.2"

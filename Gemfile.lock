@@ -112,6 +112,7 @@ GEM
       warden (~> 1.2.3)
     dotenv (3.1.8)
     drb (2.2.3)
+    dry-initializer (3.2.0)
     ed25519 (1.4.0)
     erb (6.0.0)
     erubi (1.13.1)
@@ -299,6 +300,7 @@ GEM
       rubocop (>= 1.72)
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
+    ruby-next-core (1.1.2)
     ruby-progressbar (1.13.0)
     rubyzip (3.2.2)
     securerandom (0.4.1)
@@ -350,6 +352,13 @@ GEM
     unicode-emoji (4.1.0)
     uri (1.1.1)
     useragent (0.16.11)
+    view_component (4.1.1)
+      actionview (>= 7.1.0, < 8.2)
+      activesupport (>= 7.1.0, < 8.2)
+      concurrent-ruby (~> 1)
+    view_component-contrib (0.2.5)
+      ruby-next-core (>= 0.15.0)
+      view_component
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -383,6 +392,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  dry-initializer (~> 3.2)
   jbuilder
   jsbundling-rails
   kamal
@@ -401,6 +411,8 @@ DEPENDENCIES
   thruster
   turbo-rails
   tzinfo-data
+  view_component (~> 4.1)
+  view_component-contrib (~> 0.2.5)
   web-console
 
 BUNDLED WITH
