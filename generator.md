@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+<!-- # frozen_string_literal: true
 
 # Based on https://github.com/github/view_component/blob/master/lib/rails/generators/component/component_generator.rb
 class ViewComponentGenerator < Rails::Generators::NamedBase
@@ -51,4 +51,4 @@ class ViewComponentGenerator < Rails::Generators::NamedBase
 
     attributes.map { |attr| "option :#{attr.name}" }.join("\n  ")
   end
-end
+end -->
