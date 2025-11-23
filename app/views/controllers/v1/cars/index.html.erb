@@ -1,0 +1,99 @@
+<%= component("nav_bar") %>
+
+<section class="bg-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <h1 class="text-4xl font-extrabold text-gray-800 italic mb-8">Browse Our Cars</h1>
+
+    <!-- Filters -->
+    <div class="bg-gray-50 rounded-lg p-6 mb-8">
+      <%= form_with url: v1_cars_path, method: :get, local: true, class: "grid grid-cols-1 md:grid-cols-4 gap-4" do |f| %>
+        <div>
+          <%= f.label :make_id, "Make", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.collection_select :make_id, @makes, :id, :name, { prompt: "All Makes", selected: params[:make_id] }, { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+        </div>
+        <div>
+          <%= f.label :model_id, "Model", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.collection_select :model_id, @models, :id, :name, { prompt: "All Models", selected: params[:model_id] }, { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+        </div>
+        <div>
+          <%= f.label :year, "Year", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.select :year, options_for_select(@years.map { |y| [y, y] }, params[:year]), { prompt: "All Years" }, { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+        </div>
+        <div>
+          <%= f.label :condition, "Condition", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.select :condition, options_for_select([["New", "brand_new"], ["Used", "used"]], params[:condition]), { prompt: "All Conditions" }, { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+        </div>
+        <div>
+          <%= f.label :min_price, "Min Price", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.number_field :min_price, value: params[:min_price], placeholder: "Min", class: "w-full rounded-md border-gray-300 shadow-sm" %>
+        </div>
+        <div>
+          <%= f.label :max_price, "Max Price", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.number_field :max_price, value: params[:max_price], placeholder: "Max", class: "w-full rounded-md border-gray-300 shadow-sm" %>
+        </div>
+        <div>
+          <%= f.label :sort, "Sort By", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.select :sort, options_for_select([
+            ["Newest First", ""],
+            ["Price: Low to High", "price_asc"],
+            ["Price: High to Low", "price_desc"],
+            ["Year: Newest", "year_desc"],
+            ["Year: Oldest", "year_asc"]
+          ], params[:sort]), {}, { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+        </div>
+        <div class="flex items-end">
+          <%= f.check_box :in_stock, { checked: params[:in_stock] == "true" }, "true", false %>
+          <%= f.label :in_stock, "In Stock Only", class: "ml-2 text-sm font-medium text-gray-700" %>
+        </div>
+        <div class="flex items-end">
+          <%= f.submit "Filter", class: "w-full px-4 py-2 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Cars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <% @cars.each do |car| %>
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+          <% if car.main_image %>
+            <%= link_to v1_car_path(car) do %>
+              <%= image_tag car.main_image, class: "w-full h-48 object-cover" %>
+            <% end %>
+          <% else %>
+            <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+          <% end %>
+          <div class="p-4">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              <%= link_to "#{car.make.name} #{car.model.name}", v1_car_path(car), class: "hover:text-[#1A1E28]" %>
+            </h3>
+            <p class="text-2xl font-bold text-[#1A1E28] mb-2">$<%= number_with_delimiter(car.price) %></p>
+            <div class="flex justify-between text-sm text-gray-600 mb-4">
+              <span><%= car.year %></span>
+              <span><%= number_with_delimiter(car.mileage) %> miles</span>
+              <span><%= car.condition_display %></span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="px-2 py-1 text-xs font-semibold rounded-full <%= car.in_stock? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+                <%= car.status.humanize %>
+              </span>
+              <div class="flex space-x-2">
+                <%= link_to "View", v1_car_path(car), class: "px-4 py-2 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition text-sm" %>
+                <%= link_to "Compare", v1_compare_cars_path(car1: car.slug), class: "px-4 py-2 border border-[#1A1E28] text-[#1A1E28] rounded-md hover:bg-[#1A1E28] hover:text-white transition text-sm" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Pagination -->
+    <% if @cars.respond_to?(:total_pages) && @cars.total_pages > 1 %>
+      <div class="flex justify-center">
+        <%= paginate @cars %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<%= component("footer") %>
+

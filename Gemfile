@@ -75,3 +75,4 @@ gem "view_component", "~> 4.1"
 gem "view_component-contrib", "~> 0.2.5"
 
 gem "dry-initializer", "~> 3.2"
+gem "kaminari", "~> 1.2"

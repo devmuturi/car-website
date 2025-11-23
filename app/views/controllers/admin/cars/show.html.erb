@@ -1,0 +1,87 @@
+<div class="px-4 py-5 sm:p-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-900"><%= @car.make.name %> <%= @car.model.name %></h1>
+    <div class="flex space-x-3">
+      <%= link_to "Edit", edit_admin_car_path(@car), class: "px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50" %>
+      <%= link_to "Toggle Status", toggle_status_admin_car_path(@car), data: { turbo_method: :patch }, class: "px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1A1E28] hover:bg-[#2a2f3d]" %>
+    </div>
+  </div>
+
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <div class="px-4 py-5 sm:p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div>
+          <% if @car.images.attached? %>
+            <div class="space-y-4">
+              <div class="aspect-w-16 aspect-h-9">
+                <%= image_tag @car.main_image, class: "w-full h-96 object-cover rounded-lg" %>
+              </div>
+              <div class="grid grid-cols-4 gap-2">
+                <% @car.images.each do |image| %>
+                  <%= image_tag image, class: "h-20 w-full object-cover rounded cursor-pointer hover:opacity-75" %>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="h-96 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">No Images</div>
+          <% end %>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900"><%= @car.make.name %> <%= @car.model.name %></h2>
+            <p class="text-3xl font-bold text-[#1A1E28] mt-2">$<%= number_with_delimiter(@car.price) %></p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-sm text-gray-500">Year</p>
+              <p class="text-lg font-semibold"><%= @car.year %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Mileage</p>
+              <p class="text-lg font-semibold"><%= number_with_delimiter(@car.mileage) %> miles</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Condition</p>
+              <p class="text-lg font-semibold"><%= @car.condition_display %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Status</p>
+              <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full <%= @car.in_stock? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+                <%= @car.status.humanize %>
+              </span>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Body Style</p>
+              <p class="text-lg font-semibold"><%= @car.body_style || "N/A" %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Fuel Type</p>
+              <p class="text-lg font-semibold"><%= @car.fuel_type || "N/A" %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Transmission</p>
+              <p class="text-lg font-semibold"><%= @car.transmission || "N/A" %></p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Color</p>
+              <p class="text-lg font-semibold"><%= @car.color || "N/A" %></p>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-500 mb-2">Description</p>
+            <p class="text-gray-700"><%= @car.description %></p>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-500 mb-2">Published</p>
+            <p class="text-lg font-semibold"><%= @car.published? ? "Yes (#{@car.published_at.strftime('%B %d, %Y')})" : "No" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

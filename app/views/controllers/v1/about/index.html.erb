@@ -1,0 +1,78 @@
+<%= component("nav_bar") %>
+
+<section class="bg-white py-16" data-controller="scroll-animation">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 scroll-animate" data-scroll-animation-target="element">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 italic mb-6">About Us</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Your trusted partner in finding the perfect vehicle for your needs
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div class="space-y-6 scroll-animate scroll-animate-delay-100" data-scroll-animation-target="element">
+        <h2 class="text-3xl font-bold text-gray-900">Our Story</h2>
+        <p class="text-gray-700 leading-relaxed">
+          MODRINO has been serving car enthusiasts and everyday drivers since our inception. We understand that buying a car is more than just a transaction—it's about finding a vehicle that fits your lifestyle, needs, and dreams.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Our team of automotive experts is dedicated to providing you with the best selection of quality vehicles, from brand new models to carefully inspected used cars. We believe in transparency, honesty, and building lasting relationships with our customers.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Whether you're looking for a reliable family car, a luxury vehicle, or something sporty and fun, we're here to help you find exactly what you're looking for.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-8 flex items-center justify-center min-h-[400px] scroll-animate scroll-animate-delay-200" data-scroll-animation-target="element">
+        <div class="text-center">
+          <svg class="w-32 h-32 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <p class="text-gray-600">Our Showroom</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#1A1E28] rounded-lg p-12 text-white mb-16 scroll-animate scroll-animate-delay-300" data-scroll-animation-target="element">
+      <h2 class="text-3xl font-bold italic mb-8 text-center">Our Mission</h2>
+      <p class="text-xl text-center text-gray-300 max-w-3xl mx-auto">
+        To make car buying simple, transparent, and enjoyable. We're committed to providing exceptional service and helping you drive away in the perfect car.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="bg-[#1A1E28] rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Quality Assured</h3>
+        <p class="text-gray-600">Every vehicle is thoroughly inspected and verified for quality and reliability.</p>
+      </div>
+
+      <div class="text-center">
+        <div class="bg-[#1A1E28] rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Best Prices</h3>
+        <p class="text-gray-600">Competitive pricing with transparent, no-hidden-fees policies.</p>
+      </div>
+
+      <div class="text-center">
+        <div class="bg-[#1A1E28] rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Expert Support</h3>
+        <p class="text-gray-600">Our knowledgeable team is here to help you every step of the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= component("footer") %>
+

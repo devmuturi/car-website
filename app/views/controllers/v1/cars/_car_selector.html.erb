@@ -1,0 +1,21 @@
+<div class="bg-white border-2 border-gray-200 rounded-lg p-6">
+  <h3 class="text-xl font-bold text-gray-900 mb-4">Select Car to Compare</h3>
+  <% if @car1 %>
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <p class="text-sm text-gray-600 mb-2">Currently comparing:</p>
+      <p class="font-semibold text-gray-900"><%= @car1.make.name %> <%= @car1.model.name %> (<%= @car1.year %>)</p>
+    </div>
+  <% end %>
+  <%= form_with url: v1_compare_cars_path, method: :get, local: true, class: "space-y-4" do |f| %>
+    <%= hidden_field_tag :car1, params[:car1] || @car1&.slug %>
+    <div>
+      <%= f.label :car2, "Select Second Car", class: "block text-sm font-medium text-gray-700 mb-2" %>
+      <%= f.collection_select :car2, Car.published.includes(:make, :model).where.not(id: @car1&.id).order("makes.name", "models.name", :year), 
+          ->(c) { c.slug || c.id.to_s }, 
+          ->(c) { "#{c.make.name} #{c.model.name} (#{c.year}) - $#{number_with_delimiter(c.price)}" },
+          { prompt: "Choose a car to compare..." }, 
+          { class: "w-full rounded-md border-gray-300 shadow-sm" } %>
+    </div>
+    <%= f.submit "Compare", class: "w-full px-4 py-2 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+  <% end %>
+</div>

@@ -6,3 +6,15 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ParallaxController from "./parallax_controller"
+application.register("parallax", ParallaxController)
+
+import ScrollAnimationController from "./scroll_animation_controller"
+application.register("scroll-animation", ScrollAnimationController)
+
+import VideoBackgroundController from "./video_background_controller"
+application.register("video-background", VideoBackgroundController)
+
+import MakeSelectController from "./make_select_controller"
+application.register("make-select", MakeSelectController)

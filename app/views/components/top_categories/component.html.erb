@@ -1,0 +1,127 @@
+<section class="bg-white py-16" data-controller="scroll-animation">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Section Title -->
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 italic text-center mb-8 scroll-animate" data-scroll-animation-target="element">
+      Top Categories
+    </h2>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12 scroll-animate scroll-animate-delay-100" data-scroll-animation-target="element">
+      <a href="#" class="px-6 py-2 bg-[#1A1E28] text-white rounded-md font-medium hover:bg-[#2a2f3d] transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        In stock
+      </a>
+      <a href="#" class="px-6 py-2 text-gray-600 rounded-md font-medium hover:text-gray-800 hover:bg-gray-100 transition-all duration-300 hover:scale-105">
+        Used Cars
+      </a>
+      <a href="#" class="px-6 py-2 text-gray-600 rounded-md font-medium hover:text-gray-800 hover:bg-gray-100 transition-all duration-300 hover:scale-105">
+        Any Modals
+      </a>
+      <a href="#" class="px-6 py-2 text-gray-600 rounded-md font-medium hover:text-gray-800 hover:bg-gray-100 transition-all duration-300 hover:scale-105">
+        Any Motors
+      </a>
+      <a href="#" class="px-6 py-2 text-gray-600 rounded-md font-medium hover:text-gray-800 hover:bg-gray-100 transition-all duration-300 hover:scale-105">
+        All Prices
+      </a>
+    </div>
+
+    <!-- Featured Car Display -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <!-- Large Feature Card -->
+      <div class="lg:col-span-2 bg-[#1A1E28] rounded-lg overflow-hidden relative group hover-lift scroll-animate scroll-animate-delay-200" data-scroll-animation-target="element">
+        <div class="p-8">
+          <h3 class="text-3xl font-extrabold text-white italic mb-4">Rolls Royce Wraith</h3>
+          <%= link_to "View Cars", v1_cars_path, class: "inline-block px-6 py-2 border-2 border-white text-white rounded-md hover:bg-white hover:text-[#1A1E28] transition-all duration-300 font-medium hover:scale-105" %>
+        </div>
+        <div class="relative h-64 lg:h-80 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1E28] to-transparent z-10"></div>
+          <div class="w-full h-full bg-blue-500 flex items-center justify-center text-white text-6xl font-bold group-hover:scale-110 transition-transform duration-500">
+            RR
+          </div>
+        </div>
+      </div>
+
+      <!-- Smaller Car Cards - Top Row -->
+      <div class="space-y-6">
+        <div class="bg-[#1A1E28] rounded-lg overflow-hidden relative group hover-lift scroll-animate scroll-animate-delay-300" data-scroll-animation-target="element">
+          <div class="relative h-40 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1E28] to-transparent z-10"></div>
+            <div class="w-full h-full bg-blue-600 flex items-center justify-center text-white text-4xl font-bold group-hover:scale-110 transition-transform duration-500">
+              A
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-white font-bold text-lg">Audi</h4>
+              <svg class="w-5 h-5 text-white cursor-pointer hover:text-yellow-400 transition" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </div>
+            <p class="text-white font-semibold mb-1">$78,000</p>
+            <p class="text-gray-400 text-sm">Lorem Ipsum</p>
+          </div>
+        </div>
+
+        <div class="bg-[#1A1E28] rounded-lg overflow-hidden relative group hover-lift scroll-animate scroll-animate-delay-400" data-scroll-animation-target="element">
+          <div class="relative h-40 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1E28] to-transparent z-10"></div>
+            <div class="w-full h-full bg-red-600 flex items-center justify-center text-white text-4xl font-bold group-hover:scale-110 transition-transform duration-500">
+              F
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-white font-bold text-lg">Ferrari</h4>
+              <svg class="w-5 h-5 text-white cursor-pointer hover:text-yellow-400 transition" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </div>
+            <p class="text-white font-semibold mb-1">$78,000</p>
+            <p class="text-gray-400 text-sm">Lorem Ipsum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row - Two More Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-[#1A1E28] rounded-lg overflow-hidden relative group hover-lift scroll-animate scroll-animate-delay-200" data-scroll-animation-target="element">
+        <div class="relative h-48 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1E28] to-transparent z-10"></div>
+          <div class="w-full h-full bg-orange-500 flex items-center justify-center text-white text-4xl font-bold group-hover:scale-110 transition-transform duration-500">
+            T
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h4 class="text-white font-bold text-lg">Tesla</h4>
+            <svg class="w-5 h-5 text-white cursor-pointer hover:text-yellow-400 transition" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <p class="text-white font-semibold mb-1">$78,000</p>
+          <p class="text-gray-400 text-sm">Lorem Ipsum</p>
+        </div>
+      </div>
+
+      <div class="bg-[#1A1E28] rounded-lg overflow-hidden relative group hover-lift scroll-animate scroll-animate-delay-300" data-scroll-animation-target="element">
+        <div class="relative h-48 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1E28] to-transparent z-10"></div>
+          <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-800 text-4xl font-bold group-hover:scale-110 transition-transform duration-500">
+            BMW
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <h4 class="text-white font-bold text-lg">BMW</h4>
+            <svg class="w-5 h-5 text-white cursor-pointer hover:text-yellow-400 transition" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
+          <p class="text-white font-semibold mb-1">$78,000</p>
+          <p class="text-gray-400 text-sm">Lorem Ipsum</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

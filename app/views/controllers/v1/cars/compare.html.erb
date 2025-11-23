@@ -1,0 +1,280 @@
+<%= component("nav_bar") %>
+
+<section class="bg-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <h1 class="text-4xl font-extrabold text-gray-800 italic mb-8">Compare Cars</h1>
+
+    <% if @car1 && @car2 %>
+      <!-- Winner Banner -->
+      <% if @winner %>
+        <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 mb-8 text-white text-center shadow-lg">
+          <div class="flex items-center justify-center gap-3 mb-2">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 .723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <h2 class="text-2xl font-bold">
+              <%= @winner.make.name %> <%= @winner.model.name %> is the Better Choice!
+            </h2>
+          </div>
+          <p class="mt-2 text-green-100">Based on price, year, mileage, condition, and availability</p>
+          <div class="mt-4 flex justify-center gap-8 text-sm">
+            <div>
+              <span class="text-green-200">Score:</span>
+              <span class="font-bold text-lg"><%= @winner == @car1 ? number_with_precision(@car1_score, precision: 1) : number_with_precision(@car2_score, precision: 1) %></span>
+            </div>
+            <div>
+              <span class="text-green-200">vs</span>
+            </div>
+            <div>
+              <span class="text-green-200">Score:</span>
+              <span class="font-bold text-lg"><%= @winner == @car1 ? number_with_precision(@car2_score, precision: 1) : number_with_precision(@car1_score, precision: 1) %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Car 1 -->
+        <div class="bg-white border-2 <%= @winner == @car1 ? 'border-green-500 shadow-lg' : 'border-gray-200' %> rounded-lg p-6 relative">
+          <% if @winner == @car1 %>
+            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 .723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Winner
+            </div>
+          <% end %>
+          
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"><%= @car1.make.name %> <%= @car1.model.name %></h2>
+          <% if @car1.main_image %>
+            <%= image_tag @car1.main_image, class: "w-full h-64 object-cover rounded-lg mb-4" %>
+          <% end %>
+          <p class="text-3xl font-bold text-[#1A1E28] mb-6">$<%= number_with_delimiter(@car1.price) %></p>
+          
+          <div class="space-y-3 mb-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Year:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= @car1.year %></span>
+                <% if @car1.year > @car2.year %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car1.year < @car2.year %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Price:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold">$<%= number_with_delimiter(@car1.price) %></span>
+                <% if @car1.price < @car2.price %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car1.price > @car2.price %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Mileage:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= number_with_delimiter(@car1.mileage) %> miles</span>
+                <% if @car1.mileage < @car2.mileage %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car1.mileage > @car2.mileage %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Condition:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= @car1.condition_display %></span>
+                <% if @car1.condition == 'brand_new' && @car2.condition == 'used' %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car1.condition == 'used' && @car2.condition == 'brand_new' %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Status:</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-1 text-xs font-semibold rounded-full <%= @car1.in_stock? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+                  <%= @car1.status.humanize %>
+                </span>
+                <% if @car1.in_stock? && !@car2.in_stock? %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif !@car1.in_stock? && @car2.in_stock? %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Body Style:</span>
+              <span class="font-semibold"><%= @car1.body_style || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Fuel Type:</span>
+              <span class="font-semibold"><%= @car1.fuel_type || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Transmission:</span>
+              <span class="font-semibold"><%= @car1.transmission || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Color:</span>
+              <span class="font-semibold"><%= @car1.color || "N/A" %></span>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-gray-600">Overall Score:</span>
+              <span class="text-2xl font-bold text-[#1A1E28]"><%= number_with_precision(@car1_score, precision: 1) %></span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-[#1A1E28] h-2 rounded-full" style="width: <%= [(@car1_score / [@car1_score, @car2_score].max * 100), 100].min %>%"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-2">
+            <%= link_to "View Details", v1_car_path(@car1), class: "w-full block text-center px-4 py-2 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+            <a href="<%= whatsapp_link(@car1) %>" target="_blank" class="w-full block text-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+              Enquire on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Car 2 -->
+        <div class="bg-white border-2 <%= @winner == @car2 ? 'border-green-500 shadow-lg' : 'border-gray-200' %> rounded-lg p-6 relative">
+          <% if @winner == @car2 %>
+            <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 .723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Winner
+            </div>
+          <% end %>
+          
+          <h2 class="text-2xl font-bold text-gray-900 mb-4"><%= @car2.make.name %> <%= @car2.model.name %></h2>
+          <% if @car2.main_image %>
+            <%= image_tag @car2.main_image, class: "w-full h-64 object-cover rounded-lg mb-4" %>
+          <% end %>
+          <p class="text-3xl font-bold text-[#1A1E28] mb-6">$<%= number_with_delimiter(@car2.price) %></p>
+          
+          <div class="space-y-3 mb-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Year:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= @car2.year %></span>
+                <% if @car2.year > @car1.year %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car2.year < @car1.year %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Price:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold">$<%= number_with_delimiter(@car2.price) %></span>
+                <% if @car2.price < @car1.price %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car2.price > @car1.price %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Mileage:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= number_with_delimiter(@car2.mileage) %> miles</span>
+                <% if @car2.mileage < @car1.mileage %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car2.mileage > @car1.mileage %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Condition:</span>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold"><%= @car2.condition_display %></span>
+                <% if @car2.condition == 'brand_new' && @car1.condition == 'used' %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif @car2.condition == 'used' && @car1.condition == 'brand_new' %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Status:</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-1 text-xs font-semibold rounded-full <%= @car2.in_stock? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+                  <%= @car2.status.humanize %>
+                </span>
+                <% if @car2.in_stock? && !@car1.in_stock? %>
+                  <span class="text-green-600 font-bold">✓</span>
+                <% elsif !@car2.in_stock? && @car1.in_stock? %>
+                  <span class="text-red-600 font-bold">✗</span>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Body Style:</span>
+              <span class="font-semibold"><%= @car2.body_style || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Fuel Type:</span>
+              <span class="font-semibold"><%= @car2.fuel_type || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Transmission:</span>
+              <span class="font-semibold"><%= @car2.transmission || "N/A" %></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Color:</span>
+              <span class="font-semibold"><%= @car2.color || "N/A" %></span>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-gray-600">Overall Score:</span>
+              <span class="text-2xl font-bold text-[#1A1E28]"><%= number_with_precision(@car2_score, precision: 1) %></span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-[#1A1E28] h-2 rounded-full" style="width: <%= [(@car2_score / [@car1_score, @car2_score].max * 100), 100].min %>%"></div>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-2">
+            <%= link_to "View Details", v1_car_path(@car2), class: "w-full block text-center px-4 py-2 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+            <a href="<%= whatsapp_link(@car2) %>" target="_blank" class="w-full block text-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+              Enquire on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center space-x-4">
+        <%= link_to "Compare Another Car", v1_cars_path, class: "px-6 py-3 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+        <%= link_to "Browse All Cars", v1_cars_path, class: "px-6 py-3 border-2 border-[#1A1E28] text-[#1A1E28] rounded-md hover:bg-[#1A1E28] hover:text-white transition" %>
+      </div>
+    <% elsif @car1 %>
+      <div class="max-w-2xl mx-auto">
+        <%= render "car_selector" %>
+        <div class="mt-8 text-center">
+          <%= link_to "Browse All Cars", v1_cars_path, class: "px-6 py-3 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="text-center py-12">
+        <p class="text-xl text-gray-600 mb-4">Please select cars to compare.</p>
+        <%= link_to "Browse Cars", v1_cars_path, class: "px-6 py-3 bg-[#1A1E28] text-white rounded-md hover:bg-[#2a2f3d] transition" %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<%= component("footer") %>
