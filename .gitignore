@@ -38,3 +38,5 @@
 
 /node_modules
 .history
+# Ignore application configuration
+/config/application.yml
