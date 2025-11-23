@@ -3,7 +3,7 @@ class GenerateSlugsForExistingCars < ActiveRecord::Migration[8.0]
     Car.find_each do |car|
       next if car.slug.present?
       next unless car.make_id.present? && car.model_id.present? && car.year.present?
-      
+
       base_slug = "#{car.make.name}-#{car.model.name}-#{car.year}".parameterize
       slug = base_slug
       counter = 1

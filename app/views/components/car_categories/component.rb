@@ -2,4 +2,3 @@
 
 class CarCategories::Component < ApplicationViewComponent
 end
-

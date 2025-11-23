@@ -2,4 +2,3 @@
 
 class TopCategories::Component < ApplicationViewComponent
 end
-

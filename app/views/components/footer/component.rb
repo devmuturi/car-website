@@ -2,4 +2,3 @@
 
 class Footer::Component < ApplicationViewComponent
 end
-

@@ -2,4 +2,3 @@
 
 class OurServices::Component < ApplicationViewComponent
 end
-

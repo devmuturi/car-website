@@ -13,11 +13,11 @@ module ApplicationHelper
   # If a car is provided, the message includes make, model, year, price, and car URL
   def whatsapp_link(car = nil, phone_number = nil)
     # Use provided phone, environment variable, or default (with country code)
-    phone = phone_number || ENV['WHATSAPP_PHONE'] || '254798749535'
-    phone = phone.gsub(/[^0-9]/, '')  # strip non-digit characters
+    phone = phone_number || ENV["WHATSAPP_PHONE"] || "254798749535"
+    phone = phone.gsub(/[^0-9]/, "")  # strip non-digit characters
 
     if car
-      car_url = url_for([:v1, car])
+      car_url = url_for([ :v1, car ])
       message = "Hello, I'm interested in the #{car.make.name} #{car.model.name} (#{car.year}) - $#{number_with_delimiter(car.price)}. See details: #{v1_car_url(car)}"
     else
       message = "Hello, I'm interested in learning more about your services."

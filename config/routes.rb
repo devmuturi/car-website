@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :v1, path: "/" do
-    resources :cars, only: [:index, :show], param: :slug do
+    resources :cars, only: [ :index, :show ], param: :slug do
       collection do
         get :compare
       end
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         delete :remove_image
       end
     end
-    resources :makes do 
+    resources :makes do
       get :models, on: :member
     end
     resources :models

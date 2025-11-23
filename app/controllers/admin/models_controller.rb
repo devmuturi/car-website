@@ -1,19 +1,19 @@
 module Admin
   class ModelsController < BaseController
-    before_action :set_model, only: [:show, :edit, :update, :destroy]
-    
+    before_action :set_model, only: [ :show, :edit, :update, :destroy ]
+
     def index
       @models = Model.includes(:make).order("makes.name", :name)
     end
-    
+
     def show
     end
-    
+
     def new
       @model = Model.new
       @makes = Make.order(:name)
     end
-    
+
     def create
       @model = Model.new(model_params)
       if @model.save
@@ -23,11 +23,11 @@ module Admin
         render :new, status: :unprocessable_entity
       end
     end
-    
+
     def edit
       @makes = Make.order(:name)
     end
-    
+
     def update
       if @model.update(model_params)
         redirect_to admin_models_path, notice: "Model was successfully updated."
@@ -36,12 +36,12 @@ module Admin
         render :edit, status: :unprocessable_entity
       end
     end
-    
+
     def destroy
       @model.destroy
       redirect_to admin_models_path, notice: "Model was successfully deleted."
     end
-    
+
     def models_json
       if params[:make_id].present?
         make = Make.find_by(id: params[:make_id])
@@ -55,13 +55,13 @@ module Admin
         render json: []
       end
     end
-    
+
     private
-    
+
     def set_model
       @model = Model.find(params[:id])
     end
-    
+
     def model_params
       params.require(:model).permit(:make_id, :name, :generation)
     end
